@@ -1,8 +1,7 @@
 # README
 
 ## **Motivation**
-<br />
-
+Our goal is to create a clean and more modern place to ask questions regarding technology.
 ***
 
 

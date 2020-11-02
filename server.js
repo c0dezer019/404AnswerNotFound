@@ -3,7 +3,6 @@ require('dotenv').config();
 require(__dirname + '/config/config.js')[process.env.DB_PASS];
 const db = require('./models');
 const express = require('express');
-const isLoggedIn = require('./middleware/isLoggedIn');
 const flash = require('connect-flash');
 const layouts = require('express-ejs-layouts');
 const passport = require('./config/ppConfig.js');

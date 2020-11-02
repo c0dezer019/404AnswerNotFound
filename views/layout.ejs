@@ -16,6 +16,9 @@
   <link rel="stylesheet" href="/css/global.css">
   <link rel="stylesheet" href="<%- meta.style %>">
 
+  <!-- Local scripts -->
+  <script src='<%- meta.script %>'></script>
+
   <!--Scripts-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -27,7 +30,7 @@
 </head>
 
 <body>
-  <div class="container-lg">
+  <div id="content" class="container-lg">
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="/">404AnswerNotFound</a>
@@ -54,15 +57,16 @@
               <button class="btn btn-default dropdown-toggle" type="button" id="user_menu" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false"><img id="profile_blank" class="rounded-circle"
                   src="/images/user.png" alt="Blank"></button>
-                  <% if (!meta.isUserLoggedIn) { %> 
-                      <ul class="dropdown-menu" aria-labelledby="user_menu">
-                        <li><span class="dropdown-item"><a href="/auth/signup">Register</a>/<a href="/auth/login">Login</a></span></li>
-                      </ul>
-                <% } else if(meta.isUserLoggedIn) { %>
-                  <ul class="dropdown-menu" aria-labelledby="user_menu">
-                    <li><a class="dropdown-item" href="/auth/logout">Logout</a></li>
-                  </ul>
-                <% } %>
+              <% if (!meta.isUserLoggedIn) { %>
+              <ul class="dropdown-menu" aria-labelledby="user_menu">
+                <li><span class="dropdown-item"><a href="/auth/signup">Register</a>/<a
+                      href="/auth/login">Login</a></span></li>
+              </ul>
+              <% } else if(meta.isUserLoggedIn) { %>
+              <ul class="dropdown-menu" aria-labelledby="user_menu">
+                <li><a class="dropdown-item" href="/auth/logout">Logout</a></li>
+              </ul>
+              <% } %>
               </u>
             </div>
           </div>
@@ -71,13 +75,14 @@
         </div>
       </nav>
     </header>
-  </div>
-  <%- include('partials/alerts') %>
-  <%- body %>
+    <%- include('partials/alerts') %>
+    <%- body %>
 
-  <footer id="global_footer">
-    <p>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> </p>
-  </footer>
+    <footer id="global_footer">
+      <p>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a
+          href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> </p>
+    </footer>
+  </div>
 </body>
 
 </html>

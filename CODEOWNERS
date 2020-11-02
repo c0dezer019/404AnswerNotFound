@@ -1,1 +1,3 @@
 * @golden-stateOfmind
+views/auth/signup.ejs @calebafework
+public/css/signup.css @calebafework

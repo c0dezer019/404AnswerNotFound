@@ -147,7 +147,7 @@ router.get('/inquiry/:id', (req, res) => {
           title: req.params.id,
           description: req.body.summary,
           style: '/css/inquiry.css',
-          userIsLoggedIn: false,
+          isUserLoggedIn: false,
           loggedInUser: null,
      };
      let query;

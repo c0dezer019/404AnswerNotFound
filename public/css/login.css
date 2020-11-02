@@ -1,7 +1,4 @@
 /* styling for the login views */
-body {
-	background-color: #818181;
-}
 
 .alert {
 	color: yellow;
@@ -11,12 +8,18 @@ body {
 }
 
 .container {
+	background-color: rgba(52, 58, 64, 0.8);
+	border: 1px solid black;
+	border-radius: 20px;
 	display: flex;
-	width: 50%;
+	width: 25%;
 	justify-content: center;
-	border: 3px solid #ffffff;
 	padding: 50px;
 	margin-top: 250px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	-ms-border-radius: 20px;
+	-o-border-radius: 20px;
 }
 
 .form-group input {
@@ -28,14 +31,7 @@ body {
 	color: whitesmoke;
 }
 
-#registerBtn2 {
-	color: whitesmoke;
-	height: 33px;
-	line-height: 0.5;
-	width: 90px;
-}
-
-#loginBtn {
+ #loginBtn, #registerBtn2 {
 	color: whitesmoke;
 	height: 33px;
 	line-height: 0.5;

@@ -36,7 +36,7 @@
 						<div class="answer_content">
 							<%= data2[i].dataValues.createdBy %> answered
 							<time><%= data2[i].dataValues.createdAt.toLocaleString() %></time>
-							<% if (meta.userIsLoggedIn && meta.loggedInUser == data.dataValues.createdBy) { %>
+							<% if (meta.isUserLoggedIn && meta.loggedInUser == data.dataValues.createdBy) { %>
 							<span><button name="editAnswer" id="edit_answer" class="btn btn-link"
 									role="button">Edit</button></span>
 							<% } %></p>
@@ -50,7 +50,7 @@
 				<% } %>
 			</section>
 		</div>
-		<% if (meta.userIsLoggedIn && meta.loggedInUser == data.dataValues.createdBy) { %>
+		<% if (meta.isUserLoggedIn && meta.loggedInUser == data.dataValues.createdBy) { %>
 		<div id="edit">
 			<form  method="POST" action="/inquire/<%= data.dataValues.id %>/?_method=PUT">
 				<div class="form-group">

@@ -2,13 +2,12 @@ html,
 body {
 	background-color: #8D98A7;
 	color: antiquewhite;
+	height: 100%;
 }
 
 #content {
-	display: flexbox;
 	height: 100%;
 	position: relative;
-	padding-bottom: 150px;
 }
 
 .dropdown-menu {

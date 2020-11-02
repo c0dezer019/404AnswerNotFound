@@ -1,3 +1,5 @@
 * @calebafework @c0dezer019 @golden-stateOfmind
-/auth/signup.ejs @calebafework
+/views/auth/signup.ejs @calebafework
 /public/css/signup.css @calebafework
+/views/auth/login.ejs @golden-stateOfmind
+/public/css/login.css @golden-stateOfmind

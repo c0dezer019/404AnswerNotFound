@@ -8,7 +8,6 @@ router.get('/signup', (req, res) => {
           title: 'Register For An Account',
           description: null,
           style: '/css/signup.css',
-          script: '/js/signup.js',
      };
      res.render('auth/signup', { meta: locals });
 });

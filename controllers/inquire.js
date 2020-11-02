@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 const db = require('../models');
 const express = require('express');
 const isLoggedIn = require('../middleware/isLoggedIn');
@@ -59,10 +58,10 @@ router.get('/create/inquisition', isLoggedIn, (req, res) => {
      const locals = {
           title: 'Make an inquisition',
           description: null,
-          // eslint-disable-next-line prettier/prettier
           style: '/css/inquisition.css',
      };
-     res.render('inquire/inquisition', { meta: locals });
+     
+     res.render('inquire/inquisition', { meta: locals, data: req.query.quickPost });
 });
 
 

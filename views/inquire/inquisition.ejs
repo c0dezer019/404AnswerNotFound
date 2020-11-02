@@ -8,15 +8,15 @@
 							<label for="summary">Summary: </label>
 							<input class="form-control" type="text" name="summary" id="summary"
 								aria-describedby="summary" required>
-							<small id="summary_help" class="contentHelper form-text text-muted">
+							<small id="summary_help" class="contentHelper form-text">
 								The shorted version of your inquiry. 255 characters max.
 							</small>
 						</div>
 						<div class="container" id="detail_container">
 							<label for="details"> Details:</label>
 							<textarea type="text" class="form-control" name="details" id="details"
-								aria-describedby="detail_help" cols="25" rows="10" required></textarea>
-							<small id="detail_help" class="contentHelper form-text text-muted">View our <a
+								aria-describedby="detail_help" cols="25" rows="10" required><%= data %> </textarea>
+							<small id="detail_help" class="contentHelper form-text">View our <a
 									href="#">guidelines</a> to make
 								a quality question.</small>
 						</div>

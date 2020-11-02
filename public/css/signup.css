@@ -1,4 +1,3 @@
-
 .row {
 	margin-left: 69px;
 }
@@ -53,6 +52,10 @@
 	margin-top: 20px;
 }
 
+#pass_requirements {
+	margin-left: 57px;
+}
+
 #password {
 	width: 300px;
 }
@@ -65,14 +68,20 @@
 	width: 300px;
 }
 
-#pass_requirements {
-	margin-left: 57px;
+#password_match {
+	color: red;
+	display: none;
+	position: fixed;
 }
 
 #registerBtn {
 	position: absolute;
 	bottom: 24px;
 	left: 84%;
+}
+
+#registerBtn:disabled {
+	color: grey;
 }
 
 #username {

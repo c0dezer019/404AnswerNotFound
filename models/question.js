@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
 				target: 'username',
 			});
 			models.question.hasMany(models.answer, {
-				foreignKey: 'QID',
+				foreignKey: 'qid',
 			});
 		}
 	}

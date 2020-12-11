@@ -27,7 +27,7 @@ module.exports = {
       downVotes: {
         type: Sequelize.INTEGER
       },
-      QID: {
+      qid: {
         type: Sequelize.INTEGER,
         allowNull: false
       },

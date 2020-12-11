@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
 				foreignKey: 'createdBy',
 				target: 'username',
 			});
+			models.answer.hasOne(models.question, {
+				foreignKey: 'qid'
+			});
 		}
 	}
 	answer.init({
@@ -39,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		upVotes: DataTypes.INTEGER,
 		downVotes: DataTypes.INTEGER,
-		QID: {
+	 	qid: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 		},

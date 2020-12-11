@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 require('dotenv').config();
 require(__dirname + '/config/config.js')[process.env.DB_PASS];
+const cookieParser = require('cookie-parser');
 const db = require('./models');
 const express = require('express');
 const flash = require('connect-flash');
@@ -25,7 +26,7 @@ app.use(layouts);
 app.use(methodOverride('_method'));
 
 // Session config
-app.use(express.cookieParser());
+app.use(cookieParser());
 app.use(
      session({
           secret: process.env["SECRET"],

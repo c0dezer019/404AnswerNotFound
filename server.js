@@ -66,7 +66,7 @@ app.get('/', (req, res) => {
           db.answer
                .findAll({ limit: 3 })
                .then(answer => {
-                    db.categories
+                    db.category
                          .findAll()
                          .then(category => {
                               res.render('home', {

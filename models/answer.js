@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		upVotes: DataTypes.INTEGER,
 		downVotes: DataTypes.INTEGER,
-		QID: {
+	 	qid: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 		},

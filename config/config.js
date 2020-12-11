@@ -7,6 +7,7 @@ module.exports = {
     "database": process.env.AZURE_DB,
     "host": process.env.AZURE_SERVER,
     "dialect": "mssql",
+    "encrypt": "true"
   },
   "test": {
     "username": process.env.AZURE_USER,

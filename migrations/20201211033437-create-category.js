@@ -8,11 +8,8 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      qid: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER)
-      },
       category: {
-        type: Sequelize.STRING(30)
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

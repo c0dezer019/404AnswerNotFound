@@ -29,7 +29,7 @@ app.use(methodOverride('_method'));
 app.use(cookieParser());
 app.use(
      session({
-          secret: process.env["SECRET"],
+          secret: "the_big_secret",
           resave: false,
           saveUninitialized: true,
           cookie: {

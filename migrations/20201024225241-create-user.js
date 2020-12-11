@@ -42,12 +42,6 @@ module.exports = {
       rating: {
         type: Sequelize.STRING
       },
-      answerId: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER)
-      },
-      questionId: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER)
-      },
       points: {
         type: Sequelize.INTEGER
       },

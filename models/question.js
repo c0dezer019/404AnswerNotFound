@@ -60,7 +60,6 @@ module.exports = (sequelize, DataTypes) => {
 			},
 			upVotes: DataTypes.INTEGER,
 			downVotes: DataTypes.STRING,
-			answerIds: DataTypes.ARRAY(DataTypes.INTEGER),
 		},
 		{
 			sequelize,

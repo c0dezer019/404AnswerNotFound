@@ -32,9 +32,6 @@ module.exports = {
       downVotes: {
         type: Sequelize.STRING
       },
-      answerIds: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER)
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

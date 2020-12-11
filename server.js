@@ -25,9 +25,11 @@ app.use(layouts);
 app.use(methodOverride('_method'));
 
 // Session config
+app.use(express.compress());
+app.use(express.cookieParser());
 app.use(
      session({
-          secret: process.env.SECRET,
+          secret: process.env["SECRET"],
           resave: false,
           saveUninitialized: true,
           cookie: {

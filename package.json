@@ -20,6 +20,8 @@
     "supertest": "^4.0.2"
   },
   "dependencies": {
+    "@azure/identity": "^1.2.0",
+    "@azure/keyvault-secrets": "^4.1.0",
     "bcrypt": "^5.0.0",
     "connect-flash": "^0.1.1",
     "dotenv": "^8.2.0",

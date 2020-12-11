@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "test": "NODE_ENV=test node_modules/mocha/bin/mocha"
+    "start": "node server.js"
   },
   "license": "ISC",
   "devDependencies": {
@@ -14,7 +13,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "mocha": "^6.2.3",
+    "mocha": "^8.2.1",
     "prettier": "^2.1.2",
     "supertest": "^4.0.2"
   },

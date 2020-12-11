@@ -1,8 +1,7 @@
 # README
 
 ## **Motivation**
-<br />
-
+Our goal is to create a clean and more modern place to ask questions regarding technology.
 ***
 
 
@@ -34,3 +33,36 @@
 ![Login](https://i.imgur.com/khSIACf.png)
 #### Make an inquisition
 ![Create Question](https://i.imgur.com/6kGZoOM.png)
+***
+<br />
+
+## **Screenshots**
+![Landing Page](https://i.imgur.com/kw5mfc6.png)
+![Landing Page](https://i.imgur.com/VFqQdAv.png)
+![inquisition](https://i.imgur.com/1i8mUX1.png)
+![registration](https://i.imgur.com/Bsf550E.png)
+![login](https://i.imgur.com/g7YhrZn.png)
+***
+<br />
+
+## **Technologies**
+- Express
+- ESLint/Prettier
+- EJS
+- EJS Layouts
+- Bootstrap
+- Passport
+***
+<br />
+
+## **Credits**
+Thanks to @TeddySpaghet for helping with the delete, and to our instructors for helping us work through various blockers.
+***
+<br />
+
+## **Roadmap**
+1. Give ability to answer a question.
+2. Add rich text capability to textarea fields.
+3. Add ability to downvote or upvote a user post.
+4. Add a complete point system.
+5. Ratings for each user based on quality of posts/answers.

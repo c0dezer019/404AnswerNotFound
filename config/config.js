@@ -6,7 +6,7 @@ module.exports = {
     "password": process.env.AZURE_PASS,
     "database": process.env.AZURE_DB,
     "host": process.env.AZURE_SERVER,
-    "dialect": "mssql"
+    "dialect": "mssql",
   },
   "test": {
     "username": process.env.AZURE_USER,

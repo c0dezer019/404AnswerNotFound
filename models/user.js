@@ -153,14 +153,6 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.STRING,
 				allowNull: true,
 			},
-			answerId: {
-				type: DataTypes.ARRAY(DataTypes.INTEGER),
-				allowNull: true,
-			},
-			questionId: {
-				type: DataTypes.ARRAY(DataTypes.INTEGER),
-				allowNull: true,
-			},
 			rating: {
 				type: DataTypes.STRING,
 				allowNull: true,

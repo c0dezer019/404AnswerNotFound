@@ -1,6 +1,6 @@
-/* eslint-disable prettier/prettier */
 const db = require('../models');
 const express = require('express');
+const isLoggedIn = require('../middleware/isLoggedIn');
 const passport = require('../config/ppConfig.js');
 const router = express.Router();
 
@@ -54,14 +54,14 @@ router.post('/create/inquisition', (req, res) => {
 =            Create an inquisition form       =
 =============================================*/
 
-router.get('/create/inquisition', (req, res) => {
+router.get('/create/inquisition', isLoggedIn, (req, res) => {
      const locals = {
           title: 'Make an inquisition',
           description: null,
-          // eslint-disable-next-line prettier/prettier
           style: '/css/inquisition.css',
      };
-     res.render('inquire/inquisition', { meta: locals });
+     
+     res.render('inquire/inquisition', { meta: locals, data: req.query.quickPost });
 });
 
 
@@ -147,7 +147,7 @@ router.get('/inquiry/:id', (req, res) => {
           title: req.params.id,
           description: req.body.summary,
           style: '/css/inquiry.css',
-          userIsLoggedIn: false,
+          isUserLoggedIn: false,
           loggedInUser: null,
      };
      let query;

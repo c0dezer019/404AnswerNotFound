@@ -48,10 +48,9 @@ body {
 #global_footer {
 	background-color: #343a40;
 	height: 60px;
-	margin-top: 20px;
-	margin-bottom: 0;
 	padding: 20px;
-	position: static;
+	position: absolute;
+	bottom: 0;
 	text-align: center;
 	width: 100%;
 }

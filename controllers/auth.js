@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/signup', (req, res) => {
      const locals = {
-          title: 'Login',
+          title: 'Register For An Account',
           description: null,
           style: '/css/signup.css',
      };
@@ -65,7 +65,7 @@ router.get('/logout', (req, res) => {
           title: 'Login',
           description: null,
      };
-     res.render('auth/login', { meta: locals });
+     
      req.logout();
      req.flash('success', 'You have logged out');
      res.redirect('/');

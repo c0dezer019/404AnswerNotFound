@@ -1,6 +1,5 @@
 require('dotenv').config();
-const { DefaultAzureCredential } = require('@azure/identity');
-const { SecretClient } = require('@azure/keyvault-secrets');
+
 
 module.exports = {
   "development": {

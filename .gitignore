@@ -1,7 +1,8 @@
 .env
 .idea
-.vscode
+
 node_modules
 package-lock.json
 views/test.ejs
 dbtest.js
+.vscode

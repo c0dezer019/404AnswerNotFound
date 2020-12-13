@@ -13,36 +13,24 @@ const passport = require('./config/ppConfig.js');
 const session = require('express-session');
 const app = express();
 
-let secret;
+const main = secret => {
+     app.set('view engine', 'ejs');
 
-const vault = async () => {
-     const KVUri = 'https://' + 'vault404' + '.vault.azure.net';
+     // Middleware
+     app.use(require('morgan')('dev'));
+     app.use(
+          express.urlencoded({
+               extended: false,
+          })
+     );
 
-     const credential = new DefaultAzureCredential();
-     const client = new SecretClient(KVUri, credential);
+     app.use(express.static(__dirname + '/public'));
+     app.use(layouts);
+     app.use(methodOverride('_method'));
 
-     secret = await client.getSecret(`session`);
-};
+     // Session config
+     app.use(cookieParser());
 
-vault();
-
-app.set('view engine', 'ejs');
-
-// Middleware
-app.use(require('morgan')('dev'));
-app.use(
-     express.urlencoded({
-          extended: false,
-     })
-);
-
-app.use(express.static(__dirname + '/public'));
-app.use(layouts);
-app.use(methodOverride('_method'));
-
-// Session config
-app.use(cookieParser());
-setTimeout(() => {
      app.use(
           session({
                secret: secret,
@@ -115,6 +103,17 @@ setTimeout(() => {
                }🎧`
           )
      );
+
      module.exports = server;
-     
-}, 2500);
+};
+
+window.addEventListener('load', async () => {
+     const KVUri = 'https://' + 'vault404' + '.vault.azure.net';
+
+     const credential = new DefaultAzureCredential();
+     const client = new SecretClient(KVUri, credential);
+
+     const secret = await client.getSecret(`session`);
+
+     setTimeout(() => main(secret), 2500);
+});

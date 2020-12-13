@@ -1,10 +1,22 @@
 require('dotenv').config();
-const vault = require('./azureConnect')
+const { DefaultAzureCredential } = require('@azure/identity');
+const { SecretClient } = require('@azure/keyvault-secrets');
 
-const database = vault('DB404', '404title')
-const password = vault('DB404', '404p');
-const server = vault('DB404', '404server');
-const username = vault('DB404', '404u');
+let username, password, database, server;
+
+const vault = async () => {
+     const KVUri = 'https://' + 'db404' + '.vault.azure.net';
+
+     const credential = new DefaultAzureCredential();
+     const client = new SecretClient(KVUri, credential);
+
+    username = await client.getSecret('404u');
+    password = await client.getSecret('404p');
+    database = await client.getSecret('404title');
+    server = await client.getSecret('404server');
+};
+
+vault();
 
 module.exports = {
   "development": {

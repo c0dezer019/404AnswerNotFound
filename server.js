@@ -1,16 +1,31 @@
 /* eslint-disable prettier/prettier */
 require('dotenv').config();
 require(__dirname + '/config/config.js')[process.env.DB_PASS];
+const { DefaultAzureCredential } = require('@azure/identity');
+const { SecretClient } = require('@azure/keyvault-secrets');
 const cookieParser = require('cookie-parser');
-const vault = require('./config/azureConnect');
 const db = require('./models');
 const express = require('express');
 const flash = require('connect-flash');
 const layouts = require('express-ejs-layouts');
+const methodOverride = require('method-override');
 const passport = require('./config/ppConfig.js');
 const session = require('express-session');
-const methodOverride = require('method-override');
 const app = express();
+
+
+let secret;
+
+const vault = async () => {
+     const KVUri = 'https://' + 'vault404' + '.vault.azure.net';
+
+     const credential = new DefaultAzureCredential();
+     const client = new SecretClient(KVUri, credential);
+
+    secret = await client.getSecret(`session`);
+};
+
+vault()
 
 app.set('view engine', 'ejs');
 
@@ -25,8 +40,6 @@ app.use(
 app.use(express.static(__dirname + '/public'));
 app.use(layouts);
 app.use(methodOverride('_method'));
-
-const secret = vault('VAULT404', 'session');
 
 // Session config
 app.use(cookieParser());

@@ -13,7 +13,6 @@ const passport = require('./config/ppConfig.js');
 const session = require('express-session');
 const app = express();
 
-
 let secret;
 
 const vault = async () => {
@@ -22,10 +21,10 @@ const vault = async () => {
      const credential = new DefaultAzureCredential();
      const client = new SecretClient(KVUri, credential);
 
-    secret = await client.getSecret(`session`);
+     secret = await client.getSecret(`session`);
 };
 
-vault()
+vault();
 
 app.set('view engine', 'ejs');
 
@@ -43,16 +42,18 @@ app.use(methodOverride('_method'));
 
 // Session config
 app.use(cookieParser());
-app.use(
-     session({
-          secret: secret,
-          resave: false,
-          saveUninitialized: true,
-          cookie: {
-               sameSite: 'strict',
-          },
-     })
-);
+setTimeout(() => {
+     app.use(
+          session({
+               secret: secret,
+               resave: false,
+               saveUninitialized: true,
+               cookie: {
+                    sameSite: 'strict',
+               },
+          })
+     );
+}, 2500);
 
 app.use(flash());
 
@@ -110,7 +111,8 @@ app.use('/users', require('./controllers/profiles'));
 
 var server = app.listen(process.env.PORT || 8000, () =>
      console.log(
-          `🎧You're listening to the smooth sounds of port ${process.env.PORT || 8000
+          `🎧You're listening to the smooth sounds of port ${
+               process.env.PORT || 8000
           }🎧`
      )
 );

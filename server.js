@@ -107,7 +107,7 @@ const main = secret => {
      module.exports = server;
 };
 
-window.addEventListener('load', async () => {
+const vault = async () => {
      const KVUri = 'https://' + 'vault404' + '.vault.azure.net';
 
      const credential = new DefaultAzureCredential();
@@ -116,4 +116,6 @@ window.addEventListener('load', async () => {
      const secret = await client.getSecret(`session`);
 
      setTimeout(() => main(secret), 2500);
-});
+};
+
+vault();

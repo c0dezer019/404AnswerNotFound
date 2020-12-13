@@ -2,7 +2,7 @@
 require('dotenv').config();
 require(__dirname + '/config/config.js')[process.env.DB_PASS];
 const cookieParser = require('cookie-parser');
-const { openSesame } = require('./config/azureConnect');
+const openSesame = require('./config/azureConnect');
 const db = require('./models');
 const express = require('express');
 const flash = require('connect-flash');

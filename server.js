@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 require('dotenv').config();
 let config = require(__dirname + '/config/config.js')['production'];
-console.log(config)
+console.log(config);
 const cookieParser = require('cookie-parser');
 const db = require('./models');
 const express = require('express');
@@ -62,34 +62,28 @@ app.get('/', (req, res) => {
      };
      locals.isUserLoggedIn = !!req.user;
 
-     if (!config.vaultUtilityDone) {
-          res.render('loading', {
-               meta: locals,
-          });
-     } else {
-          db.question.findAll({ limit: 3 }).then(question => {
-               db.answer
-                    .findAll({ limit: 3 })
-                    .then(answer => {
-                         db.category
-                              .findAll()
-                              .then(category => {
-                                   res.render('home', {
-                                        meta: locals,
-                                        questions: question,
-                                        answers: answer,
-                                        cat: category,
-                                   });
-                              })
-                              .catch(err => {
-                                   console.log(err);
+     db.question.findAll({ limit: 3 }).then(question => {
+          db.answer
+               .findAll({ limit: 3 })
+               .then(answer => {
+                    db.category
+                         .findAll()
+                         .then(category => {
+                              res.render('home', {
+                                   meta: locals,
+                                   questions: question,
+                                   answers: answer,
+                                   cat: category,
                               });
-                    })
-                    .catch(err => {
-                         console.log(err);
-                    });
-          });
-     }
+                         })
+                         .catch(err => {
+                              console.log(err);
+                         });
+               })
+               .catch(err => {
+                    console.log(err);
+               });
+     });
 });
 
 app.use('/auth', require('./controllers/auth'));

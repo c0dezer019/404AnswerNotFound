@@ -20,7 +20,7 @@ const vaultUtility = async () => {
                     username: username.value,
                     password: password.value,
                     database: database.value,
-                    host: '404server.database.azure.net',
+                    host: '404server.database.windows.net',
                     dialect: 'mssql',
                     encrypt: 'true',
                },
@@ -28,14 +28,14 @@ const vaultUtility = async () => {
                     username: username.value,
                     password: password.value,
                     database: database.value,
-                    host: '404server.database.azure.net',
+                    host: '404server.database.windows.net',
                     dialect: 'mssql',
                },
                production: {
                     username: username.value,
                     password: password.value,
                     database: database.value,
-                    host: '404server.database.azure.net',
+                    host: '404server.database.windows.net',
                     dialect: 'mssql',
                     encrypt: 'true',
                },
@@ -44,10 +44,5 @@ const vaultUtility = async () => {
           console.log(err);
      }
 };
-
-(async () => {
-     const test = await vaultUtility();
-     console.log(test.production);
-})();
 
 module.exports = vaultUtility;

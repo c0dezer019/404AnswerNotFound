@@ -11,25 +11,13 @@
 				<header>
 					<h3>Recent Questions</h3>
 				</header>
-				<% if (!loading) { %>
-					<article>
-						<p>Loading...</p>
-					</article>
-				<% } else { %>
-					<%- include('partials/questions.ejs') %>
-				<% } %>
+				<%- include('partials/questions.ejs') %>
 			</section>
 			<section id="recent_answers" class="rounded">
 				<header>
 					<h3>Recent Answers</h3>
 				</header>
-				<% if (!loading) { %>
-					<article>
-						<p>Loading...</p>
-					</article>
-				<% } else { %>
-					<%- include('partials/answers.ejs') %> 
-				<% } %>
+				<%- include('partials/answers.ejs') %> 
 			</section>
 			<%- include ('partials/categories') %>
 			</hr>

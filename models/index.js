@@ -1,13 +1,15 @@
 'use strict';
+const db = {};
 (async () => {
 	const fs = require('fs');
 	const path = require('path');
 	const Sequelize = require('sequelize');
 	const basename = path.basename(__filename);
 	const env = process.env.NODE_ENV || 'production';
-	const config = require(__dirname + '/../config/config.js')[env];
+	const vaultUtility = require('../config/config');
+	let config = await vaultUtility();
+	config = config[env];
 
-	const db = {};
 
 	let sequelize;
 	if (config.use_env_variable) {
@@ -46,5 +48,5 @@
 	db.sequelize = sequelize;
 	db.Sequelize = Sequelize;
 
-	module.exports = db;
-})
+})()
+module.exports = db;

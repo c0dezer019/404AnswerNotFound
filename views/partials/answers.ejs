@@ -1,0 +1,12 @@
+<% for (let i = 0; i < answers.length; i++) { %>
+	<article id="<%= answers[i].createdBy %>_answer" class="recent_answers">
+		<header class="author"><%= answers[i].createdBy %> asked
+			<%= answers[i].lastModifiedDate.toLocaleString() %></header>
+		<small class="inquest">
+			<%= answers[i].summary %><br />
+			<%= answers[i].content.slice(0, 300) %> ... <a
+				href="/inquire/inquiry/<%= answers[i].QID %>">Read More</a>
+		</small>
+		<hr>
+	</article>
+<% } %>

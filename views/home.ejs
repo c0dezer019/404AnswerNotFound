@@ -11,32 +11,24 @@
 				<header>
 					<h3>Recent Questions</h3>
 				</header>
-				<% for (let i = 0; i < questions.length; i++) { %>
-					<article id="<%= questions[i].createdBy %>_question" class="recent_inquisition">
-						<header class="author"><%= questions[i].createdBy %> asked <time><%= questions[i].createdAt.toLocaleString() %></time></header>
-						<small class="inquest">
-							<%= questions[i].summary %><br />
-							<%= questions[i].details.slice(0, 300) %> ... <a href="/inquire/inquiry/<%= questions[i].id %> ">Read More</a>
-						</small>
-						<hr>
+				<% if (!loading) { %>
+					<article>
+						<p>Loading...</p>
 					</article>
-				<% } %> 
+				<% } else { %>
+					<%- include('partials/questions.ejs') %>
+				<% } %>
 			</section>
 			<section id="recent_answers" class="rounded">
 				<header>
 					<h3>Recent Answers</h3>
 				</header>
-				<% for (let i = 0; i < answers.length; i++) { %>
-				<article id="<%= answers[i].createdBy %>_answer" class="recent_answers">
-					<header class="author"><%= answers[i].createdBy %> asked
-						<%= answers[i].lastModifiedDate.toLocaleString() %></header>
-					<small class="inquest">
-						<%= answers[i].summary %><br />
-						<%= answers[i].content.slice(0, 300) %> ... <a
-							href="/inquire/inquiry/<%= answers[i].QID %>">Read More</a>
-					</small>
-					<hr>
-				</article>
+				<% if (!loading) { %>
+					<article>
+						<p>Loading...</p>
+					</article>
+				<% } else { %>
+					<%- include('partials/answers.ejs') %> 
 				<% } %>
 			</section>
 			<%- include ('partials/categories') %>

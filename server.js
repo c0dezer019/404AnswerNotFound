@@ -1,8 +1,7 @@
 /* eslint-disable prettier/prettier */
 require('dotenv').config();
-require(__dirname + '/config/config.js')[process.env.DB_PASS];
-const { DefaultAzureCredential } = require('@azure/identity');
-const { SecretClient } = require('@azure/keyvault-secrets');
+let config = require(__dirname + '/config/config.js')['production'];
+console.log(config)
 const cookieParser = require('cookie-parser');
 const db = require('./models');
 const express = require('express');
@@ -13,61 +12,61 @@ const passport = require('./config/ppConfig.js');
 const session = require('express-session');
 const app = express();
 
-const main = secret => {
-     app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');
 
-     // Middleware
-     app.use(require('morgan')('dev'));
-     app.use(
-          express.urlencoded({
-               extended: false,
-          })
-     );
+// Middleware
+app.use(require('morgan')('dev'));
+app.use(
+     express.urlencoded({
+          extended: false,
+     })
+);
 
-     app.use(express.static(__dirname + '/public'));
-     app.use(layouts);
-     app.use(methodOverride('_method'));
+app.use(express.static(__dirname + '/public'));
+app.use(layouts);
+app.use(methodOverride('_method'));
 
-     // Session config
-     app.use(cookieParser());
+// Session config
+app.use(cookieParser());
 
-     app.use(
-          session({
-               secret: secret,
-               resave: false,
-               saveUninitialized: true,
-               cookie: {
-                    sameSite: 'strict',
-               },
-          })
-     );
+app.use(
+     session({
+          secret: 'secret',
+          resave: false,
+          saveUninitialized: true,
+          cookie: {
+               sameSite: 'strict',
+          },
+     })
+);
 
-     app.use(flash());
+app.use(flash());
 
-     app.use(passport.initialize());
-     app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
-     app.use((req, res, next) => {
-          res.locals.alerts = req.flash();
-          res.locals.currentUser = req.user;
-          next();
-     });
+app.use((req, res, next) => {
+     res.locals.alerts = req.flash();
+     res.locals.currentUser = req.user;
+     next();
+});
 
-     // Routes
+// Routes
 
-     app.get('/', (req, res) => {
-          const locals = {
-               title: '404AnswersNotFound',
-               description: 'Where answers are not found, but found.',
-               style: '/css/home.css',
-               isUserLoggedIn: false,
-          };
-          if (req.user) {
-               locals.isUserLoggedIn = true;
-          } else {
-               locals.isUserLoggedIn = false;
-          }
+app.get('/', (req, res) => {
+     const locals = {
+          title: '404AnswersNotFound',
+          description: 'Where answers are not found, but found.',
+          style: '/css/home.css',
+          isUserLoggedIn: false,
+     };
+     locals.isUserLoggedIn = !!req.user;
 
+     if (!config.vaultUtilityDone) {
+          res.render('loading', {
+               meta: locals,
+          });
+     } else {
           db.question.findAll({ limit: 3 }).then(question => {
                db.answer
                     .findAll({ limit: 3 })
@@ -90,32 +89,19 @@ const main = secret => {
                          console.log(err);
                     });
           });
-     });
+     }
+});
 
-     app.use('/auth', require('./controllers/auth'));
-     app.use('/inquire', require('./controllers/inquire'));
-     app.use('/users', require('./controllers/profiles'));
+app.use('/auth', require('./controllers/auth'));
+app.use('/inquire', require('./controllers/inquire'));
+app.use('/users', require('./controllers/profiles'));
 
-     var server = app.listen(process.env.PORT || 8000, () =>
-          console.log(
-               `🎧You're listening to the smooth sounds of port ${
-                    process.env.PORT || 8000
-               }🎧`
-          )
-     );
+const server = app.listen(process.env.PORT || 8000, () =>
+     console.log(
+          `🎧You're listening to the smooth sounds of port ${
+               process.env.PORT || 8000
+          }🎧`
+     )
+);
 
-     module.exports = server;
-};
-
-const vault = async () => {
-     const KVUri = 'https://' + 'vault404' + '.vault.azure.net';
-
-     const credential = new DefaultAzureCredential();
-     const client = new SecretClient(KVUri, credential);
-
-     const secret = await client.getSecret(`session`);
-
-     setTimeout(() => main(secret), 2500);
-};
-
-vault();
+module.exports = server;

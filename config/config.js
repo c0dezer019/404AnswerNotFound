@@ -22,7 +22,7 @@ const vaultUtility = async () => {
                     database: database.value,
                     host: '404server.database.windows.net',
                     dialect: 'mssql',
-                    encrypt: 'true',
+                    encrypt: 'true'
                },
                test: {
                     username: username.value,
@@ -30,6 +30,7 @@ const vaultUtility = async () => {
                     database: database.value,
                     host: '404server.database.windows.net',
                     dialect: 'mssql',
+                    encrypt: 'true'
                },
                production: {
                     username: username.value,
@@ -37,7 +38,7 @@ const vaultUtility = async () => {
                     database: database.value,
                     host: '404server.database.windows.net',
                     dialect: 'mssql',
-                    encrypt: 'true',
+                    encrypt: 'true'
                },
           };
      } catch (err) {

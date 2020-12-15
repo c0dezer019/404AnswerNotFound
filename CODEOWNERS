@@ -3,3 +3,7 @@
 /public/css/signup.css @calebafework
 /views/auth/login.ejs @golden-stateOfmind
 /public/css/login.css @golden-stateOfmind
+/views/profile.ejs @c0dezero19
+/views/partials/profile_picture.ejs @c0dezer019
+/public/css/profile.css @c0dezero19
+/public/js/blobit.js @c0dezer019

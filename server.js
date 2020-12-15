@@ -1,7 +1,6 @@
 /* eslint-disable prettier/prettier */
 require('dotenv').config();
 let config = require(__dirname + '/config/config.js')['production'];
-console.log(config);
 const cookieParser = require('cookie-parser');
 const db = require('./models');
 const express = require('express');

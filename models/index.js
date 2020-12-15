@@ -1,5 +1,6 @@
 'use strict';
 const db = {};
+
 (async () => {
 	const fs = require('fs');
 	const path = require('path');
@@ -9,7 +10,6 @@ const db = {};
 	const vaultUtility = require('../config/config');
 	let config = await vaultUtility();
 	config = config[env];
-
 
 	let sequelize;
 	if (config.use_env_variable) {
@@ -47,6 +47,6 @@ const db = {};
 
 	db.sequelize = sequelize;
 	db.Sequelize = Sequelize;
-
 })()
+
 module.exports = db;

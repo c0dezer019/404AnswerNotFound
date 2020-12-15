@@ -1,7 +1,10 @@
-<div>
-	<form action="/profile?_method=PUT" method="POST">
-		<label id="img-upload-lbl" for="img-upload">Image: 
-			<input aria-label="image-upload"  id="img-upload" type="file" />
-		</label>
-	</form>
+<div id="profile-picture">
+	<img id="profile-blank" src="/images/profile_blank.png" />
+	<div id="form-container" class="container">
+		<form action="/profile?_method=PUT" method="POST">
+			<label id="img-upload-lbl" for="img-upload">Image: 
+				<input aria-labelledby="img-upload-label profile-picture"  id="img-upload" type="file" />
+			</label>
+		</form>
+	</div>
 </div>

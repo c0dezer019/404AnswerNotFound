@@ -16,10 +16,11 @@ router.use((req, res, next) => {
      next();
 });
 
-router.get('/profile/user', isLoggedIn, (req, res) => {
+router.get('/', isLoggedIn, (req, res) => {
      const locals = {
           title: req.user.dataValues.username,
           description: null,
+          style: '/css/profile.css'
      };
      db.user
           .findOne({
@@ -29,7 +30,7 @@ router.get('/profile/user', isLoggedIn, (req, res) => {
           })
           .then(user => {
                (locals.description = req.user.dataValues.bio),
-                    res.render('/profile', { meta: locals, data: user });
+                    res.render('./profile', { meta: locals, data: user });
           });
 });
 

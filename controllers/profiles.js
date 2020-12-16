@@ -51,4 +51,8 @@ router.get('/profile/:user', (req, res) => {
           });
 });
 
+router.put('/profile', isLoggedIn, (req, res) => {
+
+});
+
 module.exports = router;

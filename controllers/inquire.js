@@ -231,7 +231,7 @@ router.get('/', (req, res) => {
           content: req.body.content,
           style: '/css/inquisition.css',
      };
-     res.render('inquiries', { meta: locals });
+     res.render('inquire/inquiries', { meta: locals });
 });
 
 module.exports = router;

@@ -2,29 +2,7 @@
 	<main>
 		<div class="container" id="content_holder">
 			<section>
-				<div id="form_view">
-					<form id="post" action="/inquire/create/inquisition" method="POST">
-						<div class="form-group">
-							<div class="container" id="sum_container">
-								<label for="summary">Summary: </label>
-								<input class="form-control" type="text" name="summary" id="summary"
-									aria-describedby="summary" required>
-								<small id="summary_help" class="contentHelper form-text">
-									The shorted version of your inquiry. 255 characters max.
-								</small>
-							</div>
-							<div class="container" id="detail_container">
-								<label for="details"> Details:</label>
-								<textarea type="text" class="form-control" name="details" id="details"
-									aria-describedby="detail_help" cols="25" rows="10" required><%= data %> </textarea>
-								<small id="detail_help" class="contentHelper form-text">View our <a
-										href="#">guidelines</a> to make
-									a quality question.</small>
-							</div>
-							<button id=subBtn type="submit" class="btn btn-primary">Submit</button>
-						</div>
-					</form>
-				</div>
+				<%- include('../partials/inquisition_form.ejs') %> 
 			</section>
 			<hr>
 			<section id="similar_questions">

@@ -15,14 +15,31 @@
 										href="/users/<%= data.dataValues.createdBy %>"><%= data.dataValues.createdBy %></a></span>,
 								<span>Inquired
 									<time><%= data.dataValues.createdAt.toLocaleString() %></time></span><span><% if (meta.userIsLoggedIn && meta.loggedInUser == data.dataValues.createdBy) { %>
-									<form method="POST" action="/inquire/<%= data.dataValues.id %>/?_method=DELETE">
-										<span><button name="deleteQuestion" id="delete_question" class="btn btn-link"
-												role="button">Delete</button></span>
-									</form>
+									<div id="edit-delete">
+										<span>
+											<button name="editQuestion" id="edit-question" class="btn btn-link owner_control" role="button">Edit</button>
+										</span>
+										<form method="POST" action="/inquire/<%= data.dataValues.id %>/?_method=DELETE">
+											<span>
+												<button name="deleteQuestion" id="delete-question" class="btn btn-link owner_control"role="button">Delete</button>
+											</span>
+										</form>
+									</div>
 									<% } %></span></p>
 							<% const editData = data.dataValues.id %>
 						</article>
 					</div>
+				</div>
+				<div id="answr-btn-contnr">
+					<% let answering = false;
+					const toggleAnswering = () => {
+							if (answering === false) answering = true;
+							else answering = false;
+							console.log(answering);
+					} %> 
+					<% if (meta.userIsLoggedIn && meta.loggedInUser !== data.dataValues.createdBy) { %> 
+						<button id="answer-btn" type="button" class="btn btn-primary" onclick=toggleAnswering()>Answer Inquiry</button>
+					<% } %>
 				</div>
 			</section>
 			<hr>

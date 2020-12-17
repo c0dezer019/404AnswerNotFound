@@ -5,6 +5,8 @@
 	width: 800px;
 }
 
+
+
 #question {
 	text-align: center;
 	margin-top: 50px;
@@ -13,4 +15,22 @@
 #stats {
 	text-align: right;
 	font-size: 12px;
+}
+
+#edit-delete {
+	display: flex;
+	justify-content: center;
+	text-align: right;
+	width: 25%;
+	position: absolute;
+	top: 19.2%;
+	left: 39.5%;
+}
+
+#delete-question {
+	padding-left: 0.5rem;
+}
+
+.owner_control {
+	padding: 0;
 }

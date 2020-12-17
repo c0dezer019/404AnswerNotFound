@@ -1,0 +1,34 @@
+#form-container {
+	display: flex;
+	justify-content: center;
+	position: relative;
+}
+
+#img-upload {
+	margin-left: 2%;
+	position: absolute;
+	left: 28%;
+}
+
+#profile-blank {
+	height: 300px;
+	width: 300px;
+	margin-bottom: 5%;
+}
+
+#profile-picture {
+	height: 50%;
+	margin: 20%;
+	position: relative;
+}
+
+form {
+	width: 100%;
+}
+
+.profile-container {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 88%;
+}

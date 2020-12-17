@@ -87,7 +87,7 @@ app.get('/', (req, res) => {
 
 app.use('/auth', require('./controllers/auth'));
 app.use('/inquire', require('./controllers/inquire'));
-app.use('/users', require('./controllers/profiles'));
+app.use('/profile', require('./controllers/profiles'));
 
 const server = app.listen(process.env.PORT || 8000, () =>
      console.log(

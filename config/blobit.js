@@ -2,7 +2,7 @@ const db = require('../models');
 const { BlobServiceClient } = require('@azure/storage-blob');
 const { DefaultAzureCredential } = require('@azure/identity');
 
-const account = '404blob';
+const account = 'https://404blob.blob.core.windows.net';
 const defaultAzureCredential = new DefaultAzureCredential();
 
 const blobServiceClient = new BlobServiceClient(
@@ -17,8 +17,6 @@ const yyyy = String(onDate.getFullYear());
 const h = String(onDate.getHours());
 const m = String(onDate.getMinutes());
 onDate = mm + dd + yyyy + h + m;
-
-// TODO: Log errs to a database.
 
 const blobUtility = {
      createContainer: async name => {

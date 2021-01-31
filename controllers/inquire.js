@@ -25,22 +25,23 @@ router.use((req, res, next) => {
 router.post('/create/inquisition', (req, res) => {
      // Should redirect to the /inquiry/:id route below, showing the newly created inquisition.
      if(req.user) {
-          db.question
+          const { username } = req.user['dataValues'];
+          db["question"]
                .create({
-                    createdBy: req.user.dataValues.username,
+                    createdBy: username,
                     summary: req.body.summary,
                     details: req.body.details,
                })
                .then(question => {
+                    console.log(question);
                     res.redirect('/');
                })
                .catch(err => {
-                    console.log(err);
-                    db.bug.create({
+                    db["bug"].create({
                          error: `${err}`,
                          location: 'create_inquisition_route',
                          activity: `Creating inquisition`,
-                         user: req.user.dataValues.username,
+                         user: username,
                          status: 'Untracked',
                     });
                });
@@ -70,14 +71,15 @@ router.get('/create/inquisition', isLoggedIn, (req, res) => {
 =============================================*/
 
 router.put('/:idx', (req, res) => {
-     db.question.update(
+     const { idx } = req.params;
+     db["question"].update(
           {
                summary: req.body.summary,
                details: req.body.details,
           },
           {
                where: {
-                    id: req.params.idx,
+                    id: idx,
                },
           }
      );
@@ -93,23 +95,25 @@ router.put('/:idx', (req, res) => {
 router.delete('/:idx', (req, res) => {
      
      async function destroy(id) {
-          const question = await db.question.findOne({
+          const question = await db["question"].findOne({
                where: {
                     id: id,
                },
           });
      
           if (question !== null) {
-               const answer = await db.answer.findAll({
+               const { id } = question['dataValues'];
+               const answer = await db["answer"].findAll({
                     where: {
-                         QID: question.dataValues.id,
+                         QID: id,
                     },
                });
      
                if (answer !== null) {
+                    const { id } = question['dataValues'];
                     await answer.destroy({
                          where: {
-                              QID: question.dataValues.id,
+                              QID: id,
                          },
                     });
                }
@@ -120,19 +124,21 @@ router.delete('/:idx', (req, res) => {
                     },
                });
           } else {
-               db.bug.create({
-                    error: `${req.user.dataValues.username} tried to delete a question that doesn't exist in the database`,
+               const { username } = req.user['dataValues'];
+               db["bug"].create({
+                    error: `${username} tried to delete a question that doesn't exist in the database`,
      
                     location: 'inquisition_delete_route',
                     activity: 'Deleting a question',
-                    user: req.user.dataValues.username,
+                    user: username,
                     status: 'untracked',
                });
           
           }
      }
-     
-     destroy(req.params.idx);
+
+     const { idx } = req.params;
+     destroy(idx).then(r => console.log(r));
 
      res.redirect('/');
 });
@@ -152,7 +158,7 @@ router.get('/inquiry/:id', (req, res) => {
      };
      let query;
      let queryRes;
-     db.question
+     db["question"]
           .findOne({
                where: {
                     id: req.params.id,
@@ -162,17 +168,16 @@ router.get('/inquiry/:id', (req, res) => {
                query = question;
                if (
                     req.user &&
-                    req.user.dataValues.username ==
-                         question.dataValues.createdBy
+                    req.user["dataValues"].username ===
+                         question["dataValues"].createdBy
                ) {
-                    locals.loggedInUser = req.user.dataValues.username;
-                    locals.userIsLoggedIn = true;
+                    locals.loggedInUser = req.user["dataValues"].username;
+                    locals.isUserLoggedIn = true;
                } else {
-                    console.log('Nope.');
-                    locals.userIsLoggedIn = false;
+                    locals.isUserLoggedIn = false;
                }
 
-               db.answer
+               db["answer"]
                     .findAll({
                          where: {
                               QID: req.params.id,
@@ -180,16 +185,9 @@ router.get('/inquiry/:id', (req, res) => {
                     })
                     .then(answer => {
                          answer.forEach(el => {
-                              if (
-                                   req.user &&
-                                   req.user.dataValues.username ==
-                                        el.dataValues.createdBy
-                              ) {
-                                   locals.userIsLoggedIn = true;
-                              } else {
-                                   console.log('Nope.');
-                                   locals.userIsLoggedIn = false;
-                              }
+                              const { username } = req.user['dataValues'];
+                              const { createdBy } = el['dataValues'];
+                              locals.isUserLoggedIn = req.user && username === createdBy;
                          });
                          queryRes = answer;
                          res.render('inquire/inquiry', {
@@ -199,21 +197,20 @@ router.get('/inquiry/:id', (req, res) => {
                          });
                     })
                     .catch(err => {
-                         console.log(err);
-                         db.bug.create({
+                         db['bug'].create({
                               error: `${err}`,
                               location: 'Inquiry_route',
                               activity: `Querying for answers to inquiry ID ${req.params.id}`,
-                              user: req.user.dataValues.username,
+                              user: req.user["dataValues"].username,
                               status: 'Untracked',
                          });
                     })
                     .catch(err => {
-                         db.bug.create({
+                         db["bug"].create({
                               error: err,
                               location: 'Inquiry_route',
                               activity: `Querying inquiry ID ${req.params.id}`,
-                              user: req.user.dataValues.username,
+                              user: req.user["dataValues"].username,
                               status: 'Untracked',
                          });
                     });

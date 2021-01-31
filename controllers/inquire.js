@@ -4,13 +4,6 @@ const isLoggedIn = require('../middleware/isLoggedIn');
 const passport = require('../config/ppConfig.js');
 const router = express.Router();
 
-router.use(passport.initialize());
-router.use(passport.session());
-router.use(
-     express.urlencoded({
-          extended: false,
-     })
-);
 router.use((req, res, next) => {
      res.locals.alerts = req.flash();
      res.locals.currentUser = req.user;

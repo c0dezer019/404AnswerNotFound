@@ -1,7 +1,6 @@
 const db = require('../models');
 const express = require('express');
 const isLoggedIn = require('../middleware/isLoggedIn');
-const passport = require('../config/ppConfig.js');
 const router = express.Router();
 
 router.use((req, res, next) => {

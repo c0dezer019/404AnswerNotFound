@@ -25,7 +25,7 @@
 										<%= data.dataValues.createdAt.toLocaleString() %>
 									</time>
 								</span>
-								<span>
+								<span id="delete_button_container">
 									<%# Creates a delete button if logged in user owns question %>
 									<% if (meta.isUserLoggedIn && meta.loggedInUser == data.dataValues.createdBy) { %>
 									<form id="delete_question" method="POST"
@@ -38,7 +38,6 @@
 									<% } %>
 								</span>
 							</p>
-							<% const editData = data.dataValues.id %>
 						</article>
 					</div>
 				</div>

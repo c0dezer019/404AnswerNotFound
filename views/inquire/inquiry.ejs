@@ -14,10 +14,10 @@
 							<p><span>Created by <a
 										href="/users/<%= data.dataValues.createdBy %>"><%= data.dataValues.createdBy %></a></span>,
 								<span>Inquired
-									<time><%= data.dataValues.createdAt.toLocaleString() %></time></span><span><% if (meta.userIsLoggedIn && meta.loggedInUser == data.dataValues.createdBy) { %>
-									<form method="POST" action="/inquire/<%= data.dataValues.id %>/?_method=DELETE">
+									<time><%= data.dataValues.createdAt.toLocaleString() %></time></span><span><% if (meta.isUserLoggedIn && meta.loggedInUser == data.dataValues.createdBy) { %>
+									<form id="delete_button" method="POST" action="/inquire/<%= data.dataValues.id %>/?_method=DELETE">
 										<span><button name="deleteQuestion" id="delete_question" class="btn btn-link"
-												role="button">Delete</button></span>
+												role="button" type="submit">Delete</button></span>
 									</form>
 									<% } %></span></p>
 							<% const editData = data.dataValues.id %>
@@ -25,7 +25,7 @@
 					</div>
 				</div>
 			</section>
-			<hr>
+			<hr />
 			<section id="answers">
 				<header>
 					<h3>Answers</h3>
@@ -39,18 +39,18 @@
 							<% if (meta.isUserLoggedIn && meta.loggedInUser == data.dataValues.createdBy) { %>
 							<span><button name="editAnswer" id="edit_answer" class="btn btn-link"
 									role="button">Edit</button></span>
-							<% } %></p>
+							<% } %>
 							<article id="answer_content">
 								<p><%= data2[i].dataValues.content %></p>
 							</article>
 						</div>
 					</div>
 				</section>
-				<hr>
+				<hr />
 				<% } %>
 			</section>
 		</div>
-		<% if (meta.isUserLoggedIn && meta.loggedInUser == data.dataValues.createdBy) { %>
+		<% if (meta.isUserLoggedIn && meta.loggedInUser === data.dataValues.createdBy) { %>
 		<div id="edit">
 			<form  method="POST" action="/inquire/<%= data.dataValues.id %>/?_method=PUT">
 				<div class="form-group">

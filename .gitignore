@@ -1,6 +1,6 @@
 .env
 .idea
-
+.github
 config/blobimg.js
 node_modules
 package-lock.json

@@ -5,6 +5,11 @@
 	width: 800px;
 }
 
+#delete_question {
+	display: inline-block;
+	width: max-content;
+}
+
 #question {
 	text-align: center;
 	margin-top: 50px;

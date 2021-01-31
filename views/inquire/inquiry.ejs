@@ -27,7 +27,7 @@
 								</span>
 								<span>
 									<%# Creates a delete button if logged in user owns question %>
-									<%= if (meta.isUserLoggedIn && meta.loggedInUser == data.dataValues.createdBy) { %>
+									<% if (meta.isUserLoggedIn && meta.loggedInUser == data.dataValues.createdBy) { %>
 									<form id="delete_question" method="POST"
 										  action="/inquire/<%= data.dataValues.id %>/?_method=DELETE">
 										<span>

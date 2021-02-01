@@ -68,7 +68,7 @@ app.get('/', (req, res) => {
                     db.category
                          .findAll()
                          .then(category => {
-                              res.render('home', {
+                              res.render('index', {
                                    meta: locals,
                                    questions: question,
                                    answers: answer,

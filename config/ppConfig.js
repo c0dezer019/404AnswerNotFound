@@ -59,12 +59,9 @@ passport.use(
           where: { username },
         })
         .then((user) => {
-          console.log("Reached the then.")
           if (!user || !user.validPassword(password)) {
-            console.log('if no user')
             cb(null, false);
           } else {
-            console.log('passport else')
             cb(null, user);
           }
         })

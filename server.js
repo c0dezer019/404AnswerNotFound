@@ -49,8 +49,6 @@ app.use((req, res, next) => {
      next();
 });
 
-// Routes
-
 app.get('/', (req, res) => {
      const locals = {
           title: '404AnswersNotFound',

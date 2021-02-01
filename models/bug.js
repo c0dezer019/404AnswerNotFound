@@ -1,7 +1,7 @@
 'use strict';
-const {
-  Model, DatabaseError
-} = require('sequelize');
+
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class bug extends Model {
     /**

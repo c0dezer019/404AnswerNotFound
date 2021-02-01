@@ -9,13 +9,13 @@ router.use((req, res, next) => {
      next();
 });
 
-
 /*=============================================
 =            Add inquisition to Database      =
 =============================================*/
 
 router.post('/create/inquisition', (req, res) => {
      // Should redirect to the /inquiry/:id route below, showing the newly created inquisition.
+     console.log(req.user)
      if(req.user) {
           const { username } = req.user['dataValues'];
           db["question"]
@@ -141,6 +141,7 @@ router.delete('/:idx', (req, res) => {
 =============================================*/
 
 router.get('/inquiry/:id', (req, res) => {
+     
      const locals = {
           title: req.params.id,
           description: req.body.summary,
@@ -148,8 +149,10 @@ router.get('/inquiry/:id', (req, res) => {
           isUserLoggedIn: false,
           loggedInUser: null,
      };
+
      let query;
      let queryRes;
+
      db["question"]
           .findOne({
                where: {
@@ -168,18 +171,17 @@ router.get('/inquiry/:id', (req, res) => {
                } else {
                     locals.isUserLoggedIn = false;
                }
-               console.log(`Bob's your uncle, ${req.params.id}`)
-               db["answer"]
+
+               db.answer
                     .findAll({
                          where: {
-                              QID: req.params.id,
+                              id: req.params.id,
                          },
                     })
                     .then(answer => {
+                         console.log(req.user)
                          answer.forEach(el => {
-                              const { username } = req.user['dataValues'];
-                              const { createdBy } = el['dataValues'];
-                              locals.isUserLoggedIn = req.user && username === createdBy;
+                              locals.isUserLoggedIn = req.user && req.user.dataValues.username === el.dataValues.createdBy;
                          });
                          queryRes = answer;
                          res.render('inquire/inquiry', {
@@ -193,7 +195,7 @@ router.get('/inquiry/:id', (req, res) => {
                               error: `${err}`,
                               location: 'Inquiry_route',
                               activity: `Querying for answers to inquiry ID ${req.params.id}`,
-                              user: req.user["dataValues"].username,
+                              user: req.user.dataValues.username,
                               line: 140,
                               status: 'Untracked',
                          });
@@ -203,7 +205,7 @@ router.get('/inquiry/:id', (req, res) => {
                               error: err,
                               location: 'Inquiry_route',
                               activity: `Querying inquiry ID ${req.params.id}`,
-                              user: req.user["dataValues"].username,
+                              user: req.user.dataValues.username,
                               status: 'Untracked',
                          });
                     });

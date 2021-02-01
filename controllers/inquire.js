@@ -168,7 +168,7 @@ router.get('/inquiry/:id', (req, res) => {
                } else {
                     locals.isUserLoggedIn = false;
                }
-
+               console.log(`Bob's your uncle, ${req.params.id}`)
                db["answer"]
                     .findAll({
                          where: {
@@ -194,6 +194,7 @@ router.get('/inquiry/:id', (req, res) => {
                               location: 'Inquiry_route',
                               activity: `Querying for answers to inquiry ID ${req.params.id}`,
                               user: req.user["dataValues"].username,
+                              line: 140,
                               status: 'Untracked',
                          });
                     })

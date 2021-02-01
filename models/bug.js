@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     location: DataTypes.STRING,
     activity: DataTypes.STRING,
     user: DataTypes.STRING,
+    line: DataTypes.INTEGER,
     status: DataTypes.STRING
   }, {
     sequelize,

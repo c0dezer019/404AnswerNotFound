@@ -1,49 +1,26 @@
 require('dotenv').config();
-const { DefaultAzureCredential } = require('@azure/identity');
-const { SecretClient } = require('@azure/keyvault-secrets');
 
-const credential = new DefaultAzureCredential();
-const vault = 'db404';
-
-const url = `https://${vault}.vault.azure.net`;
-
-const client = new SecretClient(url, credential);
-
-const vaultUtility = async () => {
-     try {
-          const database = await client.getSecret('404title');
-          const username = await client.getSecret('404u');
-          const password = await client.getSecret('404p');
-
-          return {
-               development: {
-                    username: username.value,
-                    password: password.value,
-                    database: database.value,
-                    host: '404server.database.windows.net',
-                    dialect: 'mssql',
-                    encrypt: 'true'
-               },
-               test: {
-                    username: username.value,
-                    password: password.value,
-                    database: database.value,
-                    host: '404server.database.windows.net',
-                    dialect: 'mssql',
-                    encrypt: 'true'
-               },
-               production: {
-                    username: username.value,
-                    password: password.value,
-                    database: database.value,
-                    host: '404server.database.windows.net',
-                    dialect: 'mssql',
-                    encrypt: 'true'
-               },
-          };
-     } catch (err) {
-          console.log(err);
-     }
+module.exports = {
+  development: {
+    username: process.env.USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB,
+    host: process.env.HOST,
+    dialect: 'postgres',
+  },
+  test: {
+    username: process.env.USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_TEST,
+    host: process.env.HOST,
+    dialect: 'postgres',
+  },
+  production: {
+    username: process.env.USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_PROD,
+    host: process.env.HOST,
+    dialect: 'postgres',
+  },
 };
 
-module.exports = vaultUtility;

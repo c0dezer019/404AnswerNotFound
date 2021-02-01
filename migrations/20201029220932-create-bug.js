@@ -20,6 +20,9 @@ module.exports = {
       user: {
         type: Sequelize.STRING
       },
+      line: {
+        type: Sequelize.INTEGER
+      },
       status: {
         type: Sequelize.STRING
       },

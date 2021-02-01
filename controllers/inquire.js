@@ -150,63 +150,77 @@ router.get('/inquiry/:id', (req, res) => {
           loggedInUser: null,
      };
 
-     let query;
-     let queryRes;
+     const { question } = db;
+     const { bug } = db;
 
-     db["question"]
+     question
           .findOne({
                where: {
                     id: req.params.id,
                },
           })
           .then(question => {
-               query = question;
+
+               const query = question;
+               const { dataValues: uData } = req.user;
+               const { username } = uData;
+               const { dataValues: qData } = question;
+               const { createdBy } = qData;
+
                if (
                     req.user &&
-                    req.user["dataValues"].username ===
-                         question["dataValues"].createdBy
+                    username ===
+                         createdBy
                ) {
-                    locals.loggedInUser = req.user["dataValues"].username;
+                    locals.loggedInUser = username;
                     locals.isUserLoggedIn = true;
                } else {
                     locals.isUserLoggedIn = false;
                }
+               const { answer } = db;
 
-               db.answer
+               answer
                     .findAll({
                          where: {
                               id: req.params.id,
                          },
                     })
                     .then(answer => {
-                         console.log(req.user)
                          answer.forEach(el => {
-                              locals.isUserLoggedIn = req.user && req.user.dataValues.username === el.dataValues.createdBy;
+
+                              const { dataValues } = el;
+                              const { createdBy } = dataValues;
+
+                              locals.isUserLoggedIn = req.user && username === createdBy;
                          });
-                         queryRes = answer;
+
                          res.render('inquire/inquiry', {
                               meta: locals,
                               data: query,
-                              data2: queryRes,
+                              data2: answer,
                          });
                     })
                     .catch(err => {
-                         db['bug'].create({
+                         bug.create({
                               error: `${err}`,
                               location: 'Inquiry_route',
                               activity: `Querying for answers to inquiry ID ${req.params.id}`,
-                              user: req.user.dataValues.username,
+                              user: username,
                               line: 140,
                               status: 'Untracked',
+                         }).then(res => {
+                              console.log(res);
                          });
                     })
                     .catch(err => {
-                         db["bug"].create({
+                         bug.create({
                               error: err,
                               location: 'Inquiry_route',
                               activity: `Querying inquiry ID ${req.params.id}`,
-                              user: req.user.dataValues.username,
+                              user: username,
                               status: 'Untracked',
+                         }).then(res => {
+                              console.log(res);
                          });
                     });
           });

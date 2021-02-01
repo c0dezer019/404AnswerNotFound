@@ -27,7 +27,7 @@
 								</span>
 								<span id="delete_button_container">
 									<%# Creates a delete button if logged in user owns question %>
-									<% if (meta.isUserLoggedIn && meta.loggedInUser == data.dataValues.createdBy) { %>
+									<% if (meta.isUserLoggedIn && meta.loggedInUser === data.dataValues.createdBy) { %>
 									<form id="delete_question" method="POST"
 										  action="/inquire/<%= data.dataValues.id %>/?_method=DELETE">
 										<span>
@@ -56,7 +56,7 @@
 								<%= data2[i].dataValues.createdAt.toLocaleString() %>
 							</time>
 							<%# Adds an edit button if answer belongs to logged in user. %>
-							<% if (meta.isUserLoggedIn && meta.loggedInUser == data.dataValues.createdBy) { %>
+							<% if (meta.isUserLoggedIn && meta.loggedInUser === data.dataValues.createdBy) { %>
 								<span>
 									<button name="editAnswer" id="edit_answer" class="btn btn-link"
 										role="button">Edit</button>

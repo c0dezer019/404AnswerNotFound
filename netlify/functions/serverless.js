@@ -15,9 +15,9 @@ app.set('view engine', 'ejs');
 // Middleware
 app.use(require('morgan')('dev'));
 app.use(
-     express.urlencoded({
-          extended: false,
-     })
+  express.urlencoded({
+    extended: false,
+  })
 );
 
 app.use(express.static(__dirname + '/public'));
@@ -27,14 +27,14 @@ app.use(methodOverride('_method'));
 // Session config
 app.use(cookieParser());
 app.use(
-     session({
-          secret: 'secret',
-          resave: false,
-          saveUninitialized: true,
-          cookie: {
-               sameSite: 'strict',
-          },
-     })
+  session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      sameSite: 'strict',
+    },
+  })
 );
 app.use(flash());
 app.use(passport.initialize());
@@ -48,36 +48,36 @@ app.use((req, res, next) => {
 // Routes
 
 app.get('/', (req, res) => {
-     const locals = {
-          title: '404AnswersNotFound',
-          description: 'Where answers are not found, but found.',
-          style: '/css/home.css',
-          isUserLoggedIn: false,
-     };
-     locals.isUserLoggedIn = !!req.user;
+  const locals = {
+    title: '404AnswersNotFound',
+    description: 'Where answers are not found, but found.',
+    style: '/css/home.css',
+    isUserLoggedIn: false,
+  };
+  locals.isUserLoggedIn = !!req.user;
 
-     db.question.findAll({ limit: 3 }).then(question => {
-          db.answer
-               .findAll({ limit: 3 })
-               .then(answer => {
-                    db.category
-                         .findAll()
-                         .then(category => {
-                              res.render('index', {
-                                   meta: locals,
-                                   questions: question,
-                                   answers: answer,
-                                   cat: category,
-                              });
-                         })
-                         .catch(err => {
-                              console.log(err);
-                         });
-               })
-               .catch(err => {
-                    console.log(err);
-               });
-     });
+  db.question.findAll({ limit: 3 }).then(question => {
+    db.answer
+      .findAll({ limit: 3 })
+      .then(answer => {
+        db.category
+          .findAll()
+          .then(category => {
+            res.render('index', {
+              meta: locals,
+              questions: question,
+              answers: answer,
+              cat: category,
+            });
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
 });
 app.use('/auth', require('../../controllers/auth'));
 app.use('/inquire', require('../../controllers/inquire'));

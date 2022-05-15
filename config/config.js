@@ -19,7 +19,13 @@ module.exports = {
     encrypt: 'true'
   },
   production: {
-    use_heroku: true,
+    use_env_variable: "DATABASE_URL",
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
+    },
     dialect: 'postgres',
   },
 }

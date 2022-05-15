@@ -35,10 +35,11 @@
     "passport-local": "^1.0.0",
     "pg": "^8.7.3",
     "sequelize": "^6.19.0",
+    "serverless-http": "^3.0.1",
     "tedious": "^14.5.0"
   },
   "packageManager": "yarn@3.2.1",
   "engines": {
-        "node": ">=8.10.0"
-    }
+    "node": ">=8.10.0"
+  }
 }

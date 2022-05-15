@@ -7,7 +7,7 @@ const flash = require('connect-flash');
 const layouts = require('express-ejs-layouts');
 const methodOverride = require('method-override');
 const passport = require('./config/ppConfig.js');
-const session = require('express-session');
+const session = require('cookie-session');
 const app = express();
 
 app.set('view engine', 'ejs');

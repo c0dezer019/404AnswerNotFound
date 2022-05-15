@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 require('dotenv').config();
-let config = require(__dirname + '/config/config.js')['production'];
+const { Client } = require('pg');
 const cookieParser = require('cookie-parser');
 const db = require('./models');
 const express = require('express');
@@ -16,9 +16,9 @@ app.set('view engine', 'ejs');
 // Middleware
 app.use(require('morgan')('dev'));
 app.use(
-     express.urlencoded({
-          extended: false,
-     })
+  express.urlencoded({
+    extended: false,
+  })
 );
 
 app.use(express.static(__dirname + '/public'));
@@ -29,14 +29,14 @@ app.use(methodOverride('_method'));
 app.use(cookieParser());
 
 app.use(
-     session({
-          secret: 'secret',
-          resave: false,
-          saveUninitialized: true,
-          cookie: {
-               sameSite: 'strict',
-          },
-     })
+  session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      sameSite: 'strict',
+    },
+  })
 );
 
 app.use(flash());
@@ -45,44 +45,61 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use((req, res, next) => {
-     res.locals.alerts = req.flash();
-     res.locals.currentUser = req.user;
-     next();
+  res.locals.alerts = req.flash();
+  res.locals.currentUser = req.user;
+  next();
+});
+
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
+
+client.connect();
+
+client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+  if (err) throw err;
+  for (let row of res.rows) {
+    console.log(JSON.stringify(row));
+  }
+  client.end();
 });
 
 // Routes
 
 app.get('/', (req, res) => {
-     const locals = {
-          title: '404AnswersNotFound',
-          description: 'Where answers are not found, but found.',
-          style: '/css/home.css',
-          isUserLoggedIn: false,
-     };
-     locals.isUserLoggedIn = !!req.user;
+  const locals = {
+    title: '404AnswersNotFound',
+    description: 'Where answers are not found, but found.',
+    style: '/css/home.css',
+    isUserLoggedIn: false,
+  };
+  locals.isUserLoggedIn = !!req.user;
 
-     db.question.findAll({ limit: 3 }).then(question => {
-          db.answer
-               .findAll({ limit: 3 })
-               .then(answer => {
-                    db.category
-                         .findAll()
-                         .then(category => {
-                              res.render('index', {
-                                   meta: locals,
-                                   questions: question,
-                                   answers: answer,
-                                   cat: category,
-                              });
-                         })
-                         .catch(err => {
-                              console.log(err);
-                         });
-               })
-               .catch(err => {
-                    console.log(err);
-               });
-     });
+  db.question.findAll({ limit: 3 }).then(question => {
+    db.answer
+      .findAll({ limit: 3 })
+      .then(answer => {
+        db.category
+          .findAll()
+          .then(category => {
+            res.render('index', {
+              meta: locals,
+              questions: question,
+              answers: answer,
+              cat: category,
+            });
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
 });
 
 app.use('/auth', require('./controllers/auth'));
@@ -90,11 +107,10 @@ app.use('/inquire', require('./controllers/inquire'));
 app.use('/profile', require('./controllers/profiles'));
 
 const server = app.listen(process.env.PORT || 8000, () =>
-     console.log(
-          `🎧You're listening to the smooth sounds of port ${
-               process.env.PORT || 8000
-          }🎧`
-     )
+  console.log(
+    `🎧You're listening to the smooth sounds of port ${process.env.PORT || 8000
+    }🎧`
+  )
 );
 
 module.exports = server;

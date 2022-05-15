@@ -10,6 +10,14 @@ module.exports = {
           dialect: 'postgres',
           encrypt: 'true'
      },
+     heroku: {
+       username: process.env.H_USERNAME,
+       password: process.env.H_PASSWORD,
+       database: process.env.H_DB,
+       host: process.env.H_HOST,
+       dialect: 'postgres',
+       encrypt: 'true'
+     },
      test: {
           username: process.env.USERNAME,
           password: process.env.PASSWORD,

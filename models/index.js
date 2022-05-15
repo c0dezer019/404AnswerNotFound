@@ -13,7 +13,17 @@ const db = {};
 let sequelize;
 if (config.use_env_variable) {
 	sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
+}
+else if (config.use_heroku)
+  sequelize = new Sequelize(process.env.DATABASE_URL, {
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
+    }
+  });
+else {
 	sequelize = new Sequelize(
 		config.database,
 		config.username,
@@ -46,5 +56,15 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+if(config.use_heroku)
+  sequelize
+    .authenticate()
+    .then(() => {
+      console.log('Connection has been established successfully.');
+    })
+    .catch(err => {
+      console.error('Unable to connect to the database:', err);
+    });
 
 module.exports = db;

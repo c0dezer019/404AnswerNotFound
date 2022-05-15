@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 require('dotenv').config();
-const { Client } = require('pg');
 const cookieParser = require('cookie-parser');
 const db = require('./models');
 const express = require('express');
@@ -48,23 +47,6 @@ app.use((req, res, next) => {
   res.locals.alerts = req.flash();
   res.locals.currentUser = req.user;
   next();
-});
-
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
-
-client.connect();
-
-client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-  client.end();
 });
 
 // Routes

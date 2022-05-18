@@ -30,8 +30,8 @@ module.exports = (sequelize, DataTypes) => {
 			delete userData.password;
 			return userData;
 		}
-	}
-	
+  }
+
 	user.init(
 		{
 			username: {
@@ -41,7 +41,6 @@ module.exports = (sequelize, DataTypes) => {
 				validate: {
 					len: {
 						args: [5, 25],
-						// eslint-disable-next-line prettier/prettier
 						msg:
 							'Username must be between 5 and 25 characters',
 					},
@@ -167,7 +166,7 @@ module.exports = (sequelize, DataTypes) => {
 			modelName: 'user',
 		}
 	);
- 
+
 	user.beforeCreate((pendingUser, options) => {
 		// if a user exists and if user has a password.
 		if (pendingUser && pendingUser.password) {
@@ -176,7 +175,7 @@ module.exports = (sequelize, DataTypes) => {
 			// store hash as password
 			pendingUser.password = hash;
 		}
-	});
-	
+  });
+
 	return user;
 };

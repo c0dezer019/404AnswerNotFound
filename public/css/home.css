@@ -3,15 +3,10 @@ hr {
 	background-color: #8D98A7;
 }
 
-#content_holder {
-	display: inline-block;
-	width: 1100px;
+#content-holder {
 	height: 100%;
-	margin-left: 300px;
-}
-
-#global_footer {
-	bottom: -400px;
+	width: 100%;
+	margin: auto;
 }
 
 #finalize {
@@ -36,7 +31,6 @@ hr {
 
 #quick_post {
 	margin-left: 20px;
-	width: 537px;
 }
 
 #quick_post_label {
@@ -47,18 +41,7 @@ hr {
 }
 
 #recent_questions {
-	background-color: #343a40;
-    height: 500px;
-	margin-top: 20px;
-	padding: 20px;
-}	
-
-#recent_questions header {
-	width: 250px;
-}
-#recent_answers {
-	background-color: #343a40;
-    height: 500px;
+  height: 50%;
 	margin-top: 20px;
 	padding: 20px;
 }
@@ -90,7 +73,7 @@ hr {
 }
 
 #homeLogin {
-	display: flex;
+	display: none;
 }
 
 #registerBtn {
@@ -109,4 +92,20 @@ hr {
 
 .author {
 	width: 100% !important;
+}
+
+@media screen and (min-width: 992px) {
+	#content-holder {
+		display: inline-block;
+		width: 57.29%;
+		margin-left: 15.6%;
+	}
+
+	#homeLogin {
+		display: flex;
+	}
+
+	#recent_questions {
+		background-color: rgba(52, 58, 64, 0.8);
+	}
 }

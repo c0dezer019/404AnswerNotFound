@@ -1,0 +1,16 @@
+<div id="bubble-dropdown-menu" class="dropdown">
+  <div class="rounded-circle" id="profile_bubble">
+    <button class="btn btn-default dropdown-toggle" type="button" id="user_menu" data-bs-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false"><img id="profile_blank" class="rounded-circle"
+        src="/images/user.png" alt="Blank"></button>
+    <% if (!meta.isUserLoggedIn) { %>
+          <ul class="dropdown-menu" aria-labelledby="user_menu">
+            <li><span class="dropdown-item"><a href="/auth/signup">Register</a>/<a href="/auth/login">Login</a></span></li>
+    </ul>
+    <% } else if(meta.isUserLoggedIn) { %>
+            <ul class="dropdown-menu" aria-labelledby="user_menu">
+              <li><a class="dropdown-item" href="/auth/logout">Logout</a></li>
+    </ul>
+    <% } %>
+  </div>
+</div>

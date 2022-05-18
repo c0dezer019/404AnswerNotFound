@@ -1,5 +1,5 @@
-<div class="collapse navbar-collapse" id="collapser">
-  <div id="nav-link-container">
+<div class="collapse navbar-collapse" id="collapse">
+  <div class="link-wrapper">
     <ul class="navbar-nav mr-auto mt-2 mt-md-0">
       <li class="nav-item">
         <a class="nav-link" href="/">Home</a>
@@ -9,11 +9,6 @@
       </li>
     </ul>
   </div>
-  <form action="/search" class="form-inline" method="GET">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search questions" aria-label="Search">
-    <input id="search_glass" type="image" src="/images/search.png" alt="Eye" formmethod="GET"
-      formaction="/search">
-  </form>
   <%- include('navbar_profile_bubble') %>
   <% if (meta.isUserLoggedIn) { %>
         <a name="spanishInquisition" id="spanish_inquisition" class="btn btn-primary" href="/inquire/create/inquisition" role="button">

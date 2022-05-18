@@ -131,3 +131,4 @@ dist
 
 .editorconfig
 *.code-workspace
+.vscode

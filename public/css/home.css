@@ -5,6 +5,8 @@ hr {
 
 #content-holder {
 	height: 100%;
+	width: 100%;
+	margin: auto;
 }
 
 #finalize {
@@ -39,13 +41,6 @@ hr {
 }
 
 #recent_questions {
-  height: 50%;
-	margin-top: 20px;
-	padding: 20px;
-}
-
-#recent_answers {
-	background-color: #343a40;
   height: 50%;
 	margin-top: 20px;
 	padding: 20px;
@@ -100,7 +95,17 @@ hr {
 }
 
 @media screen and (min-width: 992px) {
+	#content-holder {
+		display: inline-block;
+		width: 57.29%;
+		margin-left: 15.6%;
+	}
+
 	#homeLogin {
 		display: flex;
+	}
+
+	#recent_questions {
+		background-color: rgba(52, 58, 64, 0.8);
 	}
 }

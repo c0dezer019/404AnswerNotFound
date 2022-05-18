@@ -7,15 +7,15 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     </span>
+    <span class="collapse-wrap">
+      <%- include("navbar_collapse") %>
+    </span>
     <span class="search-container">
       <form action="/search" class="form-inline" method="GET">
         <input class="form-control mr-sm-2" type="search" placeholder="Search questions" aria-label="Search">
         <input id="search-glass" type="image" src="/images/search.png" alt="Eye" formmethod="GET"
           formaction="/search">
       </form>
-    </span>
-    <span class="collapse-wrap">
-      <%- include("navbar_collapse") %>
     </span>
   </div>
 </nav>

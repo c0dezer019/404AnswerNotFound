@@ -1,5 +1,5 @@
-<div class="container-fluid">
-	<div class="container" id="content_holder">
+<div class="home-wrap">
+	<div class="inner-wrap" id="content-holder">
 		<% if (!meta.isUserLoggedIn) { %>
 			<%- include('partials/homeLogin.ejs') %>
 		<% } else { %>
@@ -10,15 +10,10 @@
 			<header>
 				<h3>Recent Questions</h3>
 			</header>
-			<%- include('partials/questions.ejs') %>
+			<div class="content-wrap">
+				<%- include('partials/questions.ejs') %>
+			</div>
 		</section>
-		<section id="recent_answers" class="rounded">
-			<header>
-				<h3>Recent Answers</h3>
-			</header>
-			<%- include('partials/answers.ejs') %> 
-		</section>
-		<%- include ('partials/categories') %>
 		</hr>
 	</div>
 </div>

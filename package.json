@@ -5,44 +5,42 @@
   "main": "server.js",
   "author": "Brian Blankenship, Caleb Afework, Antonio Reyes",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "migrate": "sequelize db:migrate",
+    "lint": "eslint --fix . && echo 'Lint complete.'"
   },
   "license": "ISC",
   "devDependencies": {
-    "chai": "^4.2.0",
-    "eslint": "^7.11.0",
-    "eslint-config-prettier": "^6.15.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "mocha": "^8.2.1",
-    "prettier": "^2.1.2",
-    "supertest": "^4.0.2"
+    "chai": "^4.3.6",
+    "eslint": "^8.15.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "mocha": "^10.0.0",
+    "prettier": "^2.6.2",
+    "supertest": "^6.2.3"
   },
   "dependencies": {
-    "@azure/identity": "^1.2.0",
-    "@azure/keyvault-secrets": "^4.1.0",
-    "@azure/storage-blob": "^12.3.0",
-    "bcrypt": "^5.0.0",
+    "bcrypt": "^5.0.1",
     "connect-flash": "^0.1.1",
-    "cookie-parser": "^1.4.5",
-    "dotenv": "^8.2.0",
-    "ejs": "^3.1.5",
-    "express": "^4.17.1",
-    "express-ejs-layouts": "^2.5.0",
-    "express-session": "^1.17.1",
+    "cookie-parser": "^1.4.6",
+    "cookie-session": "^2.0.0",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-ejs-layouts": "^2.5.1",
     "method-override": "^3.0.0",
     "morgan": "^1.10.0",
-    "passport": "^0.4.1",
+    "passport": "^0.5.2",
     "passport-local": "^1.0.0",
-    "pg": "^8.4.1",
-    "sequelize": "^6.3.5",
-    "tedious": "^9.2.1"
+    "pg": "^8.7.3",
+    "sequelize": "^6.19.0",
+    "sequelize-cli": "^6.4.1",
+    "serverless-http": "^3.0.1",
+    "tedious": "^14.5.0"
   },
-  "eslintConfig": {
-    "rules": {
-      "no-unused-vars": "off"
-    }
-  },
-  "lint": "eslint --fix . && echo 'Lint complete.'"
+  "packageManager": "yarn@3.2.1",
+  "engines": {
+    "node": ">=8.10.0"
+  }
 }

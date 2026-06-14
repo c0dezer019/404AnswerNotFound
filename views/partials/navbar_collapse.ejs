@@ -1,0 +1,30 @@
+<div class="collapse navbar-collapse" id="collapse">
+  <div class="link-wrapper">
+    <ul class="navbar-nav mr-auto mt-2 mt-md-0">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/inquire/inquiries">Inquiries</a>
+      </li>
+      <% if (!meta.isUserLoggedIn) { %>
+        <li class="nav-item profile">
+          <a class="nav-link" href="/auth/login">Login</a></span>
+        </li>
+        <li class="nav-item profile">
+          <a class="nav-link" href="/auth/signup">Register</a>
+        </li>
+      <% } else { %>
+        <li class="nav-item profile">
+          <a class="nav-link" href="/auth/logout">Logout</a>
+        </li>
+      <% } %>
+    </ul>
+  </div>
+  <%- include('navbar_profile_bubble') %>
+  <% if (meta.isUserLoggedIn) { %>
+        <a name="spanishInquisition" id="spanish_inquisition" class="btn btn-primary" href="/inquire/create/inquisition" role="button">
+          Make an Inquisition
+        </a>
+  <% } %>
+</div>

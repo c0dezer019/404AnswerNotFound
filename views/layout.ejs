@@ -8,78 +8,31 @@
   <meta name="description" content="<%- meta.description %>">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!--Stylesheets -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!--Bootstrap-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
   <!--Local Stylesheets-->
   <link rel="stylesheet" href="/css/global.css">
   <link rel="stylesheet" href="<%- meta.style %>">
 
   <!--Scripts-->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-  </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-  </script>
 </head>
 
 <body>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">404AnswerNotFound</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapser"
-          aria-controls="collapser" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapser">
-          <ul class="navbar-nav mr-auto mt-2 mt-md-0">
-            <li class="nav-item">
-              <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/inquire/inquiries">Inquiries</a>
-            </li>
-          </ul>
-          <form action="/search" class="form-inline" method="GET">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search questions" aria-label="Search">
-            <input id="search_glass" type="image" src="/images/search.png" alt="Eye" formmethod="GET"
-              formaction="/search">
-          </form>
-          <div class="rounded-circle" id="profile_bubble">
-            <div id="drop" class="dropdown">
-              <button class="btn btn-default dropdown-toggle" type="button" id="user_menu" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false"><img id="profile_blank" class="rounded-circle"
-                  src="/images/user.png" alt="Blank"></button>
-              <% if (!meta.isUserLoggedIn) { %>
-                    <ul class="dropdown-menu" aria-labelledby="user_menu">
-                      <li><span class="dropdown-item"><a href="/auth/signup">Register</a>/<a href="/auth/login">Login</a></span></li>
-              </ul>
-              <% } else if(meta.isUserLoggedIn) { %>
-                      <ul class="dropdown-menu" aria-labelledby="user_menu">
-                        <li><a class="dropdown-item" href="/auth/logout">Logout</a></li>
-              </ul>
-              <% } %>
-              </u>
-            </div>
-          </div>
-          <% if (meta.isUserLoggedIn) { %>
-                <a name="spanishInquisition" id="spanish_inquisition" class="btn btn-primary" href="/inquire/create/inquisition" role="button">
-                  Make an Inquisition
-                </a>
-          <% } %>
-        </div>
-      </nav>
-    </header>
-    <%- include('partials/alerts') %>
+  <header>
+    <%- include('partials/header') %>
+  </header>
+  <%- include('partials/alerts') %>
+  <main>
     <%- body %>
-
-    <footer id="global_footer">
-      <p>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a
-          href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> </p>
-    </footer>
+  </main>
+  <footer id="global_footer">
+    <p>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a
+      href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> </p>
+  </footer>
 </body>
 
 </html>

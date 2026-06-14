@@ -1,26 +1,19 @@
-<div class="container-fluid">
-	<div class="container" id="content_holder">
-		<main>
-			<% if (!meta.isUserLoggedIn) { %>
-				<%- include('partials/homeLogin.ejs') %>
-			<% } else { %>
-			<%- include('partials/quickPost.ejs') %>
-			<% } %>
-			<hr>
-			<section id="recent_questions" class="rounded">
-				<header>
-					<h3>Recent Questions</h3>
-				</header>
+<div class="home-wrap">
+	<div class="inner-wrap" id="content-holder">
+		<% if (!meta.isUserLoggedIn) { %>
+			<%- include('partials/homeLogin.ejs') %>
+		<% } else { %>
+		<%- include('partials/quickPost.ejs') %>
+		<% } %>
+		<hr>
+		<section id="recent_questions" class="rounded">
+			<header>
+				<h3>Recent Questions</h3>
+			</header>
+			<div class="content-wrap">
 				<%- include('partials/questions.ejs') %>
-			</section>
-			<section id="recent_answers" class="rounded">
-				<header>
-					<h3>Recent Answers</h3>
-				</header>
-				<%- include('partials/answers.ejs') %> 
-			</section>
-			<%- include ('partials/categories') %>
-			</hr>
-		</main>
+			</div>
+		</section>
+		</hr>
 	</div>
 </div>
